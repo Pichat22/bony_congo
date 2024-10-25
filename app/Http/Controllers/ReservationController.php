@@ -60,7 +60,8 @@ class ReservationController extends Controller
      */
     public function show(reservation $reservation)
     {
-        //
+        return view('reservations.detail',compact('reservation'));
+        
     }
 
     /**
