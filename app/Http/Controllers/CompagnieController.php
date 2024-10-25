@@ -45,6 +45,7 @@ class CompagnieController extends Controller
      */
     public function show(compagnie $compagnie)
     {
+        return view('compagnies.detail',compact('compagnie'));
         
     }
 

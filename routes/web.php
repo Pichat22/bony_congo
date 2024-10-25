@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/compagnies/create', [CompagnieController::class, 'create'])->name('compagnie.create');
     Route::get('/compagnies', [CompagnieController::class, 'index'])->name('compagnie.index');
     Route::Post('/compagnies', [CompagnieController::class, 'store'])->name('compagnie.store');
+    Route::get('/detail/{compagnie}', [CompagnieController::class, 'show'])->name('compagnie.show');
+
 
     Route::get('/vols/create', [VolController::class, 'create'])->name('vol.create');
     Route::Post('/vols', [VolController::class, 'store'])->name('vol.store');
