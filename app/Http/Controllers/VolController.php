@@ -54,7 +54,7 @@ class VolController extends Controller
         $vol->date_de_creation=$request->date_de_creation;
         $vol->compagnie_id=$request->compagnie_id;
         $vol->save();
-        return redirect()->route('vol.index')->with('message','vol ajoute avec succes');
+        return redirect()->route('vols.index')->with('message','vol ajoute avec succes');
 
 
 
@@ -92,7 +92,7 @@ class VolController extends Controller
     public function destroy(vol $vol)
     {
         $vol->delete(); 
-        return redirect()->route('vol.index');
+        return redirect()->route('vols.index');
         
     }
 }

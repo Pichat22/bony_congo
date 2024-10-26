@@ -25,17 +25,17 @@ Route::middleware('auth')->group(function () {
     Route::Post('/compagnies', [CompagnieController::class, 'store'])->name('compagnie.store');
     Route::get('/detail/{compagnie}', [CompagnieController::class, 'show'])->name('compagnie.show');
 
-
-    Route::get('/vols/create', [VolController::class, 'create'])->name('vol.create');
-    Route::Post('/vols', [VolController::class, 'store'])->name('vol.store');
-    Route::get('/vols', [VolController::class, 'index'])->name('vol.index');
-    Route::get('/detail/{vol}', [VolController::class, 'show'])->name('vol.show');
-    Route::put('/update/{vol}', [VolController::class, 'update'])->name('vol.update');
-    Route::delete('vol/delete/{vol}', [VolController::class, 'destroy'])->name('vol.delete');
+    Route::resource('vols',VolController::class);
+    // Route::get('/vols/create', [VolController::class, 'create'])->name('vol.create');
+    // Route::Post('/vols', [VolController::class, 'store'])->name('vol.store');
+    // Route::get('/vols', [VolController::class, 'index'])->name('vol.index');
+    // Route::get('/detail/{vol}', [VolController::class, 'show'])->name('vol.show');
+    // Route::put('/update/{vol}', [VolController::class, 'update'])->name('vol.update');
+    // Route::delete('vol/delete/{vol}', [VolController::class, 'destroy'])->name('vol.delete');
 
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservation.create');
     Route::Post('/reservations', [ReservationController::class, 'store'])->name('reservation.store');
-    Route::get('/detail/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
+    Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
     Route::put('/update/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::delete('/delete/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.delete');
 

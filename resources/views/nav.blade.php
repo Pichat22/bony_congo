@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item mr-3">
-          <a class="nav-link active text-warning" aria-current="page" href="{{route('vol.index')}}">Accueil</a>
+          <a class="nav-link active text-warning" aria-current="page" href="{{route('vols.index')}}">Accueil</a>
         </li>
         <li class="nav-item mr-3">
-          <a class="nav-link active text-warning" href="{{route('vol.create')}}">Vol</a>
+          <a class="nav-link active text-warning" href="{{route('vols.create')}}">Vol</a>
         </li>
         <li class="nav-item dropdown mr-3">
           <a class="nav-link active text-warning " href="{{route('reservation.index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">

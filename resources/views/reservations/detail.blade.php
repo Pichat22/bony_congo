@@ -5,12 +5,12 @@
         detail N:{{$reservation->id}}
     </div>
     <div class="card-body">
-        <p>date:{{$reservation->date}}</p>
-        <p>statut:{{$reservation->statut}}</p>
-        <p>date de creation:{{$reservation->classe}}</p>
-        <p>vol:{{$vol->vol->nom}}</p>
-        <p>date d'ajout:{{$reservation->created_at}}</p>
-        <p>date de modification:{{$reservation->updated_at}}</p>
+        <p>date :{{$reservation->date}}</p>
+        <p>statut :{{$reservation->statut}}</p>
+        <p>classe :{{$reservation->classe}}</p>
+        <p>vol :{{$reservation->vol->matricule}}</p>
+        <p>date d'ajout :{{$reservation->created_at}}</p>
+        <p>date de modification :{{$reservation->updated_at}}</p>
 
         
 

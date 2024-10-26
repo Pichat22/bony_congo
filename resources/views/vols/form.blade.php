@@ -13,7 +13,7 @@
       </div>
       @endif
       
-    <form method='Post' action="{{route('vol.store')}}">
+    <form method='Post' action="{{route('vols.store')}}">
     @csrf
     <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Campagnie</label>
