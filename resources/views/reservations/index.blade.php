@@ -14,6 +14,7 @@
       <th scope="col">Statut</th>
       <th scope="col">Classe</th>
       <th scope="col">Matricule</th>
+      <th scope="col">Nom</th>
       <th scope="col">Action</th>
 
     </tr>
@@ -26,6 +27,8 @@
       <td>{{$reservation->statut}}</td>
       <td>{{$reservation->classe}}</td>
       <td>{{$reservation->vol->matricule}}</td>
+      <td>{{$reservation->user->nom}}</td>
+
 
       <td>
         <a href="{{route('reservation.show',$reservation->id)}}" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">

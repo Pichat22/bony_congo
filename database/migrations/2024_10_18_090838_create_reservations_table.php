@@ -16,9 +16,13 @@ return new class extends Migration
             $table->date('date');
             $table->string('statut');
             $table->string('classe');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vol_id');
+            $table->integer('nombre_de_place');
             $table->timestamps();
             $table->foreign('vol_id')->references('id')->on('vols');
+            $table->foreign('user_id')->references('id')->on('users');
+
 
         });
     }

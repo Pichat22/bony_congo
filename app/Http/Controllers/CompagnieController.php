@@ -49,6 +49,12 @@ class CompagnieController extends Controller
         
     }
 
+    public function showVols($id)
+    {
+        $compagnie = Compagnie::with('vols')->findOrFail($id);
+        return view('compagnies.vols', compact('compagnie'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

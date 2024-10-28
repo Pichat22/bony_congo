@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use id;
 use App\Models\vol;
+use App\Models\compagnie;
 use App\Models\reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -43,12 +46,16 @@ class ReservationController extends Controller
             'statut.required'=>'Le statut est obligatoire',
             'classe.required'=>'La classe est obligatoire',
             'vol_id.required'=>'le vol_id est obligatoire' 
+            
         ]);
         $reservation = new reservation();
         $reservation->date=$request->date;
         $reservation->statut=$request->statut;
         $reservation->classe=$request->classe;
         $reservation->vol_id=$request->vol_id;
+        $reservation->nombre_de_place=$request->nombre_de_place;
+        $reservation->user_id=Auth::id();
+
         $reservation->save();
         return redirect()->route('reservation.index')->with('message',' reserver avec succes');
 
@@ -60,7 +67,16 @@ class ReservationController extends Controller
      */
     public function show(reservation $reservation)
     {
+        $reservation = Reservation::with(['user', 'vol.compagnie'])->findOrFail($id);
+        
         return view('reservations.detail',compact('reservation'));
+        
+    }
+    public function ReservationByUser(){
+
+        $reservation = Reservation::with('user')->get()->groupBy('user_id');
+        
+        return view('reservation.user', compact('reservation'));
         
     }
 

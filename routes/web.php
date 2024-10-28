@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/compagnies', [CompagnieController::class, 'index'])->name('compagnie.index');
     Route::Post('/compagnies', [CompagnieController::class, 'store'])->name('compagnie.store');
     Route::get('/detail/{compagnie}', [CompagnieController::class, 'show'])->name('compagnie.show');
+    Route::get('/compagnies/{id}/vols',[CompagnieController::class, 'showVols'])->name('compagnies.vols');
+
 
     Route::resource('vols',VolController::class);
     // Route::get('/vols/create', [VolController::class, 'create'])->name('vol.create');
@@ -38,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
     Route::put('/update/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::delete('/delete/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.delete');
+    Route::get('/user_reservation', [ReservationController::class, 'ReservationByUser'])->name('reservation.user');
+
 
 
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservation.index');

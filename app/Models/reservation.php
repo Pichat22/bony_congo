@@ -11,5 +11,9 @@ class reservation extends Model
     public function vol(){
         return $this->belongsTo(vol::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

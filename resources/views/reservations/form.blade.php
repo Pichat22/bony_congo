@@ -34,6 +34,10 @@
     <label for="exampleInputPassword1" class="form-label">Classe</label>
     <input type="text" class="form-control" id="exampleInputPassword1" name="classe">
   </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Nombre de place</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" name="nombre_de_place">
+  </div>
   <button type="submit" class="btn btn-warning">Ajouter</button>
 </form>
     </div>
