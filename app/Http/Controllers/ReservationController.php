@@ -57,7 +57,7 @@ class ReservationController extends Controller
         $reservation->user_id=Auth::id();
 
         $reservation->save();
-        return redirect()->route('reservation.index')->with('message',' reserver avec succes');
+        return redirect()->route('reservations.index')->with('message',' reserver avec succes');
 
 
     }
@@ -102,7 +102,7 @@ class ReservationController extends Controller
     public function destroy(reservation $reservation)
     {
         $reservation->delete();
-        return redirect()->route('reservation.index');
+        return redirect()->route('reservations.index');
         
     }
 }

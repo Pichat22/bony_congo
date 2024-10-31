@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h1>Liste des Compagnies Aériennes</h1>
-    <a href="{{ route('compagnie.create') }}" class="btn btn-primary mb-3">Ajouter une Compagnie</a>
+    <a href="{{ route('compagnies.create') }}" class="btn btn-primary mb-3">Ajouter une Compagnie</a>
     @if(session()->has('message'))
 <div class="alert alert-success">
   {{session()->get('message')}}

@@ -37,7 +37,7 @@ class CompagnieController extends Controller
         $compagnie = new compagnie();
         $compagnie->nom_compagnie=$request->nom_compagnie;
         $compagnie->save();
-        return redirect()->route('compagnie.index')->with('message',' compagnie ajouter avec succes');
+        return redirect()->route('compagnies.index')->with('message',' compagnie ajouter avec succes');
     }
 
     /**

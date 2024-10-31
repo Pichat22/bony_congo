@@ -12,7 +12,7 @@
       </ul>
       </div>
       @endif
-<form method='Post' action="{{route('compagnie.store')}}">
+<form method='Post' action="{{route('compagnies.store')}}">
 @csrf
 <div class="mb-3">
   
