@@ -1,10 +1,16 @@
-<x-guest-layout>
+
+
+<x-guest-layout class="bg-dark" style="background-color:black">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <div class="d-flex justify-content-center mb-4" style= "margin-left:6rem;">
+                <a href="/">
+                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                </a>
+            </div>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -42,6 +48,10 @@
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
+            <x-primary-button class="ms-3 bg-secondary">
+                {{ __('Register') }}
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
+
