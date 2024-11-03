@@ -11,7 +11,7 @@
       </ul>
       </div>
       @endif
-    <form method="Post" action="{{route('reservation.store')}}">
+    <form method="Post" action="{{route('reservations.store')}}">
     @csrf
     <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Vol</label>

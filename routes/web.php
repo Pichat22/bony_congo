@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\CompagnieController;
 use App\Http\Controllers\ReservationController;
 
@@ -53,6 +54,10 @@ Route::middleware('auth')->group(function () {
     // Route::get('/reservations', [ReservationController::class, 'index'])->name('reservation.index');
 
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
+
+
+    Route::resource('paiements', PaiementController::class);
+
 
 });
 
