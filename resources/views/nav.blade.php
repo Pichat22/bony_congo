@@ -21,7 +21,13 @@
           <a class="nav-link active text-warning " aria-disabled="true">Contactez-nous</a>
         </li>
       </ul>
-      
+
+      @Auth
+      <span class="text-white " style="margin-right:2%">
+      {{Auth::user()->nom}}
+      </span>
+      @endAuth
+
       <form action="{{ route('logout') }}" class="btn btn-warning" method="Post">
       @csrf
       <button>Deconnexion</button>
