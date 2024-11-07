@@ -23,14 +23,16 @@
       </ul>
 
       @Auth
-      <span class="text-white " style="margin-right:2%">
+      <span class="text-white " style="margin-righ:2%">
       {{Auth::user()->nom}}
       </span>
       @endAuth
 
-      <form action="{{ route('logout') }}" class="btn btn-warning" method="Post">
-      @csrf
-      <button>Deconnexion</button>
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-warning text-black " style="background-color:warning">
+          Déconnexion
+        </button>
       </form>
                                     
     </div>

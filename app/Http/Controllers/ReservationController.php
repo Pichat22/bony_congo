@@ -16,7 +16,15 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $user=Auth::user();
+        if($user->role==='client'){
+            $reservations=Reservation::where('user_id',$user->id)->get();
+        }
+        
+        if($user->role==='admin'){
         $reservations = Reservation::all();
+
+        }
         return view('reservations.index',compact('reservations'));
     }
 
