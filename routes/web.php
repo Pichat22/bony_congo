@@ -1,10 +1,13 @@
 <?php
 
 use App\Models\vol;
+use App\Models\compagnie;
 use App\Models\reservation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VolController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EscaleController;
+use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\CompagnieController;
@@ -23,9 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
+    Route::get('compagnies/{compagnie}/vols', function (compagnie $compagnie) {
+        return response()->json($compagnie->vols);  // Retourne les vols en format JSON
+    });
     Route::resource('compagnies',CompagnieController::class);
-    
+    Route::post('reservations/search', [ReservationController::class, 'search'])->name('reservations.search');
     // Route::get('/compagnies/create', [CompagnieController::class, 'create'])->name('compagnie.create');
     // Route::get('/compagnies', [CompagnieController::class, 'index'])->name('compagnie.index');
     // Route::Post('/compagnies', [CompagnieController::class, 'store'])->name('compagnie.store');
@@ -49,7 +54,7 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/delete/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.delete');
      Route::get('/user_reservation', [ReservationController::class, 'ReservationByUser'])->name('reservations.user');
 
-
+     Route::resource('trajets', TrajetController::class);
 
     // Route::get('/reservations', [ReservationController::class, 'index'])->name('reservation.index');
 
@@ -57,8 +62,10 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('paiements', PaiementController::class);
-
-
-});
-
+    Route::get('trajets/{trajet}/escales/create', [EscaleController::class, 'create'])->name('escales.create');
+    Route::post('trajets/{trajet}/escales', [EscaleController::class, 'store'])->name('escales.store');
+    Route::get('trajets/{trajet}/escales', [EscaleController::class, 'index'])->name('escales.index');
+});Route::get('trajets/{trajet}/escales/{escale}/edit', [EscaleController::class, 'edit'])->name('escales.edit');
+Route::put('trajets/{trajet}/escales/{escale}', [EscaleController::class, 'update'])->name('escales.update');
+Route::delete('trajets/{trajet}/escales/{escale}', [EscaleController::class, 'destroy'])->name('escales.destroy'); // Supprimer une escale
 require __DIR__.'/auth.php';

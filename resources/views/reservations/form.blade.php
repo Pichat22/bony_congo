@@ -1,48 +1,39 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="row">
-    <div class="col-4">
-    @if($errors->any())
-      <div class="alert alert-danger">
-      <ul>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-      </ul>
-      </div>
-      @endif
-    <form method="Post" action="{{route('reservations.store')}}">
-    @csrf
-    <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Vol</label>
-    <select class="form-select" aria-label="Default select example"name="vol_id">
-  <option selected>Choisir un vol</option>
-  @foreach($vols as $vol)
-  <option value="{{$vol->id}}">{{$vol->matricule}}</option>
-  @endforeach
-</select>
-</div>
-  <div class="mb-3">
-    <label for="date" class="form-label">Date</label>
-    <input type="date" class="form-control" id="compagnie" aria-describedby="emailHelp" name="date">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Statut</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="statut">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Classe</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="classe">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Nombre de place</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" name="nombre_de_place">
-  </div>
-  <button type="submit" class="btn btn-warning">Ajouter</button>
-</form>
-    </div>
-    <div class="col-8">
-        <img src="{{asset('image/vol.png')}}"  alt="" srcset="">
-    </div>
-</div>
+    <h1>Rechercher un trajet</h1>
+
+    <form method="POST" action="{{ route('reservations.search') }}">
+        @csrf
+
+        <!-- Date de réservation -->
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" class="form-control" required>
+        </div>
+
+        <!-- Ville de départ -->
+        <div class="form-group mt-3">
+            <label for="ville_depart_id">Ville de départ</label>
+            <select name="ville_depart_id" id="ville_depart_id" class="form-control" required>
+                <option value="" disabled selected>Choisissez une ville</option>
+                @foreach($villes as $ville)
+                    <option value="{{ $ville->id }}">{{ $ville->nom }} ({{ $ville->pays }})</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Ville d'arrivée -->
+        <div class="form-group mt-3">
+            <label for="ville_arrivee_id">Ville d'arrivée</label>
+            <select name="ville_arrivee_id" id="ville_arrivee_id" class="form-control" required>
+                <option value="" disabled selected>Choisissez une ville</option>
+                @foreach($villes as $ville)
+                    <option value="{{ $ville->id }}">{{ $ville->nom }} ({{ $ville->pays }})</option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Rechercher</button>
+    </form>
 @endsection

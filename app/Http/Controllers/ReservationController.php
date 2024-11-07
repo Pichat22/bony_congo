@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use id;
 use App\Models\vol;
+use App\Models\Ville;
+use App\Models\Trajet;
 use App\Models\compagnie;
 use App\Models\reservation;
 use Illuminate\Http\Request;
@@ -28,48 +30,47 @@ class ReservationController extends Controller
         return view('reservations.index',compact('reservations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $vols = vol::all();
-
-        return view('reservations.form',compact('vols'));
-        
+        $villes = Ville::all(); // Pour permettre la sélection des villes de départ et d'arrivée
+        return view('reservations.form', compact('villes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function search(Request $request)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'ville_depart_id' => 'required|exists:villes,id',
+            'ville_arrivee_id' => 'required|exists:villes,id|different:ville_depart_id',
+        ]);
+
+        $trajets = Trajet::where('ville_depart_id', $request->ville_depart_id)
+            ->where('ville_arrivee_id', $request->ville_arrivee_id)
+            ->where('date_depart', $request->date)
+            ->with('compagnie', 'vol')
+            ->get();
+
+        return view('reservations.voldispo', compact('trajets'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'date'=>'required',
-            'statut'=>'required',
-            'classe'=>'required',
-            'vol_id'=>'required'
-        ],[
-           'date.required'=>'La date est obligatoire',
-            'statut.required'=>'Le statut est obligatoire',
-            'classe.required'=>'La classe est obligatoire',
-            'vol_id.required'=>'le vol_id est obligatoire' 
-            
+            'trajet_id' => 'required|exists:trajets,id',
+            'nombre_de_place' => 'required|integer|min:1',
         ]);
-        $reservation = new reservation();
-        $reservation->date=$request->date;
-        $reservation->statut=$request->statut;
-        $reservation->classe=$request->classe;
-        $reservation->vol_id=$request->vol_id;
-        $reservation->nombre_de_place=$request->nombre_de_place;
-        $reservation->user_id=Auth::id();
 
-        $reservation->save();
-        return redirect()->route('reservations.index')->with('message',' reserver avec succes');
+        Reservation::create([
+            'user_id' => Auth::id(),
+            'trajet_id' => $request->trajet_id,
+            'nombre_de_place' => $request->nombre_de_place,
+            'date' => now(),
+            'statut' => 'confirmée',
+            'classe' => $request->classe,
+        ]);
 
-
+        return redirect()->route('reservations.index')->with('success', 'Réservation créée avec succès.');
     }
-
     /**
      * Display the specified resource.
      */

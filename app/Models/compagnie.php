@@ -12,4 +12,8 @@ class compagnie extends Model
     public function vols(){
         return $this->hasMany(vol::class);
     }
+    public function trajets()
+    {
+        return $this->hasMany(Trajet::class); // Relation inverse
+    }
 }

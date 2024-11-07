@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->string('statut');
-            $table->string('classe');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('vol_id');
-            $table->integer('nombre_de_place');
+            $table->date('date'); // Date de réservation
+            $table->string('statut')->default('en attente'); // Statut par défaut
+            $table->string('classe'); // Classe (économique, business, etc.)
+            $table->unsignedBigInteger('user_id'); // Utilisateur qui réserve
+            $table->unsignedBigInteger('trajet_id'); // Trajet réservé
+            $table->integer('nombre_de_place'); // Nombre de places réservées
             $table->timestamps();
-            $table->foreign('vol_id')->references('id')->on('vols');
-            $table->foreign('user_id')->references('id')->on('users');
+
+            // Clés étrangères
+            $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
 
         });
