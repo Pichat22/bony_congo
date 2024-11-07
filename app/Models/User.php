@@ -23,6 +23,7 @@ class User extends Authenticatable
         'nombre_de_place',
         'email',
         'password',
+        'role',
     ];
 
     public function reservations()
