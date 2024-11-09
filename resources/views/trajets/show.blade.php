@@ -14,7 +14,7 @@
             @else
                 <ul>
                     @foreach($trajet->escales as $escale)
-                        <li>{{ $escale->ville->nom }} (Ordre : {{ $escale->ordre }})</li>
+                        <li>{{ $escale->ville->nom }} </li>
                     @endforeach
                 </ul>
             @endif

@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function () {
 
      Route::resource('trajets', TrajetController::class);
 
+
+
     // Route::get('/reservations', [ReservationController::class, 'index'])->name('reservation.index');
 
     Route::get('/users', [UserController::class, 'index'])->name('user.index');

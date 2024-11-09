@@ -11,7 +11,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Ordre</th>
+                    <!-- <th>Ordre</th> -->
                     <th>Ville</th>
                     <th>Actions</th>
                 </tr>
@@ -19,7 +19,7 @@
             <tbody>
                 @foreach($escales as $escale)
                     <tr>
-                        <td>{{ $escale->ordre }}</td>
+                        <!-- <td>{{ $escale->ordre }}</td> -->
                         <td>{{ $escale->ville->nom }}</td>
                         <td>
                             <a href="{{ route('escales.edit', [$trajet->id, $escale->id]) }}" class="btn btn-warning">Modifier</a>
