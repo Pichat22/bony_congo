@@ -57,20 +57,33 @@ class ReservationController extends Controller
     {
         $request->validate([
             'trajet_id' => 'required|exists:trajets,id',
-            'nombre_de_place' => 'required|integer|min:1',
+            'nombre_de_place' => 'required|integer',
+            'classe' => 'required|in:Économique,Business,Première',
+            'passengers' => 'required|array|min:1',
+            'passengers.*.nom_personne' => 'required|string|max:255',
+            'passengers.*.prenom_personne' => 'required|string|max:255',
+            'passengers.*.telephone_personne' => 'required|string|max:15',
+            'passengers.*.numero_identite_personne' => 'required|string|max:20',
         ]);
-
-        Reservation::create([
-            'user_id' => Auth::id(),
-            'trajet_id' => $request->trajet_id,
-            'nombre_de_place' => $request->nombre_de_place,
-            'date' => now(),
-            'statut' => 'confirmée',
-            'classe' => $request->classe,
-        ]);
-
-        return redirect()->route('reservations.index')->with('success', 'Réservation créée avec succès.');
+    
+        foreach ($request->passengers as $passenger) {
+            Reservation::create([
+                'user_id' => Auth::id(),
+                'trajet_id' => $request->trajet_id,
+                'nombre_de_place' => 1, // Chaque réservation est pour une personne
+                'date' => now(),
+                'statut' => 'confirmée',
+                'classe' => $request->classe,
+                'nom_personne' => $passenger['nom_personne'],
+                'prenom_personne' => $passenger['prenom_personne'],
+                'telephone_personne' => $passenger['telephone_personne'],
+                'numero_identite_personne' => $passenger['numero_identite_personne'],
+            ]);
+        }
+    
+        return redirect()->route('reservations.index')->with('success', 'Réservations créées avec succès.');
     }
+    
     /**
      * Display the specified resource.
      */
@@ -113,5 +126,13 @@ class ReservationController extends Controller
         $reservation->delete();
         return redirect()->route('reservations.index');
         
+    }
+    public function downloadPDF($id)
+    {
+        $reservation = Reservation::with('trajet.villeDepart', 'trajet.villeArrivee', 'trajet.compagnie', 'trajet.vol')->findOrFail($id);
+    
+        $pdf = \PDF::loadView('reservations.pdf', compact('reservation'));
+    
+        return $pdf->download('reservation-details.pdf');
     }
 }

@@ -19,6 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); // Utilisateur qui réserve
             $table->unsignedBigInteger('trajet_id'); // Trajet réservé
             $table->integer('nombre_de_place'); // Nombre de places réservées
+            $table->string('nom_personne');
+            $table->string('prenom_personne');
+            $table->string('telephone_personne');
+            $table->string('numero_identite_personne');
             $table->timestamps();
 
             // Clés étrangères

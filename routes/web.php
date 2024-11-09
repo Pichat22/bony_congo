@@ -11,6 +11,7 @@ use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\CompagnieController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/tableudebord', [DashboardController::class, 'index'])->name('dashboardS');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -60,6 +62,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
+    Route::get('reservations/{id}/download', [ReservationController::class, 'downloadPDF'])->name('reservations.download');
 
     Route::resource('paiements', PaiementController::class);
     Route::get('trajets/{trajet}/escales/create', [EscaleController::class, 'create'])->name('escales.create');

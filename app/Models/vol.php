@@ -14,7 +14,17 @@ class vol extends Model
         return $this->belongsTo(compagnie::class);
     }
 
-    public function reservations(){
-        return $this->hasmany(reservation::class);
+   
+  
+
+    public function reservations()
+    {
+        return $this->hasManyThrough(Reservation::class, Trajet::class, 'vol_id', 'trajet_id');
+    }
+
+    public function placesDisponibles()
+    {
+        $placesRéservées = $this->reservations()->sum('nombre_de_place');
+        return $this->nombre_de_place - $placesRéservées;
     }
 }

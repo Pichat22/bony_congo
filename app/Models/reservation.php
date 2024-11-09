@@ -16,6 +16,11 @@ class reservation extends Model
         'date',
         'statut',
         'classe',
+        'nom_personne',
+        'prenom_personne',
+        'telephone_personne',
+        'numero_identite_personne',
+
     ];
 
     public function user()
@@ -27,5 +32,10 @@ class reservation extends Model
     {
         return $this->belongsTo(Trajet::class);
     }
+    public function vol()
+    {
+        return $this->hasOneThrough(Vol::class, Trajet::class, 'id', 'id', 'trajet_id', 'vol_id');
+    }
 
+   
 }
