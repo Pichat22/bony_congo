@@ -15,10 +15,10 @@
             </select>
         </div>
 
-        <div class="form-group mt-3">
+        <!-- <div class="form-group mt-3">
             <label for="ordre">Ordre</label>
             <input type="number" name="ordre" id="ordre" class="form-control" placeholder="Ordre de l'escale">
-        </div>
+        </div> -->
 
         <button type="submit" class="btn btn-primary mt-3">Ajouter l'escale</button>
     </form>
