@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<a href="{{route('compagnies.create')}}" class="btn btn-success">Ajout</a>
+<a href="{{route('compagnies.create')}}" class="btn btn-warning">Ajout</a>
 @if(session()->has('message'))
 <div class="alert alert-success">
   {{session()->get('message')}}

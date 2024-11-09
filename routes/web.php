@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\reservation;
 use App\Http\Controllers\{
     ProfileController,
     ReservationController,
@@ -21,7 +22,13 @@ Route::get('/', function () {
 });
 // Route vers le tableau de bord (accessible après authentification et vérification email)
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user=Auth::user();
+    $reservations=[];
+    if ($user->role === 'client') {
+        $reservations = Reservation::where('user_id', $user->id)->get();
+    }
+
+    return view('dashboard', compact('reservations'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Groupement des routes accessibles à tous les utilisateurs authentifiés

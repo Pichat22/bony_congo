@@ -5,13 +5,13 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-        <li><a href=""class="nav-link link-dark" style="color:black; font-size:1.3rem;">
+        <li><a href="{{ route('tableudebord')}}"class="nav-link link-dark" style="color:black; font-size:1.3rem;">
             <i class="bi bi-speedometer2"></i>
             Dashboard</a></li>
         <li><a href="{{ route('trajets.index') }}"class="nav-link link-dark" style="color:black; font-size:1.3rem;">
         <i class="bi  bi-house"></i>
             Accueil </a></li>
-        <li><a href=""class="nav-link link-dark" style="color:black; font-size:1.3rem;">
+        <li><a href="{{ route('trajets.index')}}"class="nav-link link-dark" style="color:black; font-size:1.3rem;">
         <i class="bi bi-gear"></i>
             Parametre</a></li>
         <li><a href=""class="nav-link link-dark" style="color:black; font-size:1.3rem;">
