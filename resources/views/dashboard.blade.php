@@ -8,7 +8,11 @@
             {{ session()->get('message') }}
         </div>
     @endif
-
+    @if(session('error'))
+    <div id="flash-message" class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <table class="table">
         <thead>
             <tr>
@@ -60,4 +64,15 @@
   
   </tbody>
 </table>
+<script>
+    // Supprimer le message flash après 30 secondes
+    document.addEventListener('DOMContentLoaded', function () {
+        const flashMessage = document.getElementById('flash-message');
+        if (flashMessage) {
+            setTimeout(() => {
+                flashMessage.style.display = 'none';
+            }, 3000); // 30000 ms = 30 secondes
+        }
+    });
+</script>
 @endsection

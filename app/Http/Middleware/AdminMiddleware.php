@@ -18,7 +18,7 @@ class AdminMiddleware
     {
         
         if (Auth::check() && Auth::user()->role !== 'admin') {
-            abort(403, 'Accès interdit.');
+            return redirect()->route('dashboard')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
         }
 
        
