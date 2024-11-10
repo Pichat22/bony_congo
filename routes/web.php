@@ -5,7 +5,9 @@ use App\Models\reservation;
 use App\Http\Controllers\{
     ProfileController,
     ReservationController,
-    PaiementController
+    PaiementController,
+    HotelController
+
 };
 
 /*
@@ -47,6 +49,9 @@ Route::middleware('auth')->group(function () {
 
     // Gestion des paiements
     Route::resource('paiements', PaiementController::class);
+
+    // Gestion des hotels
+    Route::resource('hotels', HotelController::class);
 });
 
 require __DIR__ . '/auth.php';

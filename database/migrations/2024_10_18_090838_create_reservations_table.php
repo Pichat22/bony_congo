@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('classe'); // Classe (économique, business, etc.)
             $table->unsignedBigInteger('user_id'); // Utilisateur qui réserve
             $table->unsignedBigInteger('trajet_id'); // Trajet réservé
+            $table->unsignedBigInteger('hotel_id'); // Hotel réservé
             $table->integer('nombre_de_place'); // Nombre de places réservées
             $table->string('nom_personne');
             $table->string('prenom_personne');
@@ -28,6 +29,7 @@ return new class extends Migration
             // Clés étrangères
             $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
 
 
         });

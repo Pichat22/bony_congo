@@ -32,6 +32,11 @@ class reservation extends Model
     {
         return $this->belongsTo(Trajet::class);
     }
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
     public function vol()
     {
         return $this->hasOneThrough(Vol::class, Trajet::class, 'id', 'id', 'trajet_id', 'vol_id');
