@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -21,7 +22,9 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('hotels.form');
+        $villes = Ville::all(); // Pour permettre la sélection des villes de départ et d'arrivée
+
+        return view('hotels.form',compact('villes'));
         
     }
 
@@ -35,10 +38,14 @@ class HotelController extends Controller
         'adresse'=>'required',
         'etoil'=>'required',
         'prix'=>'required',
+        'ville_id'=>'required',
+
 
        ]);
        
-       Hotel::create($request->all());
+       Hotel::create($request->only(['nom', 'adresse', 'etoil', 'prix']));
+
+       
        return redirect()->route('hotels.index')->with('success', 'hotel enregistré avec succès');
 
 
@@ -75,7 +82,7 @@ class HotelController extends Controller
      */
     public function destroy(Hotel $hotel)
     {
-        $vol->delete(); 
+        $hotel->delete(); 
         return redirect()->route('hotels.index');
     }
 }

@@ -17,7 +17,12 @@ return new class extends Migration
             $table->string('adresse');
             $table->integer('etoil');
             $table->decimal('prix',8,2);
+            $table->unsignedBigInteger('ville_id')->nullable(); 
+ 
+
             $table->timestamps();
+            $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade');
+
         });
     }
 
