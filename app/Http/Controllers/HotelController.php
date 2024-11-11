@@ -38,12 +38,14 @@ class HotelController extends Controller
         'adresse'=>'required',
         'etoil'=>'required',
         'prix'=>'required',
-        'ville_id'=>'required',
+        'ville_id' => 'required|exists:villes,id',
+
+        
 
 
        ]);
        
-       Hotel::create($request->only(['nom', 'adresse', 'etoil', 'prix']));
+       Hotel::create($request->only(['nom', 'adresse', 'etoil', 'prix','ville_id']));
 
        
        return redirect()->route('hotels.index')->with('success', 'hotel enregistré avec succès');

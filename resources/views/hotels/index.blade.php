@@ -17,6 +17,8 @@
                 <th scope="col">Adresse</th>
                 <th scope="col">Etoil</th>
                 <th scope="col">Prix</th>
+                <th scope="col">Ville</th>
+
             </tr>
         </thead>
         <tbody>
@@ -27,6 +29,8 @@
                     <td>{{ $hotel->adresse }}</td>
                     <td>{{ $hotel->etoil }}</td>
                     <td>{{ $hotel->prix }}</td>
+                    <td>{{ $hotel->ville }}</td>
+
                     <td>
         <a href="{{route('hotels.show',$hotel->id)}}" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
