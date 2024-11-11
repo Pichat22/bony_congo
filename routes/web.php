@@ -32,7 +32,9 @@ Route::get('/dashboard', function () {
 
     return view('dashboard', compact('reservations'));
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('compagnies/{compagnie}/vols', function (App\Models\Compagnie $compagnie) {
+    return response()->json($compagnie->vols); 
+})->name('compagnies.vols');
 // Groupement des routes accessibles à tous les utilisateurs authentifiés
 Route::middleware('auth')->group(function () {
 
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
     // Gestion des paiements
     Route::resource('paiements', PaiementController::class);
-
+    Route::get('/hotels/search', [HotelController::class, 'searchForm'])->name('hotels.search');
     // Gestion des hotels
     Route::resource('hotels', HotelController::class);
 });

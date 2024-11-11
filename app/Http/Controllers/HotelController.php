@@ -85,4 +85,25 @@ class HotelController extends Controller
         $hotel->delete(); 
         return redirect()->route('hotels.index');
     }
+    public function getHotels($villeId)
+{
+    $hotels = Hotel::where('ville_id', $villeId)->get();
+    return response()->json($hotels);
 }
+public function search(Request $request)
+{
+    $request->validate([
+        'ville_id' => 'required|exists:villes,id',
+    ]);
+
+    $hotels = Hotel::where('ville_id', $request->ville_id)->get();
+
+    return view('hotels.result', compact('hotels'));
+}
+public function searchForm()
+{
+    $villes = Ville::all();
+
+    return view('hotels.search', compact('villes'));
+
+}}

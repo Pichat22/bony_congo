@@ -8,7 +8,9 @@ use App\Http\Controllers\{
     TrajetController,
     EscaleController
 };
-
+Route::get('compagnies/{compagnie}/vols', function (App\Models\Compagnie $compagnie) {
+    return response()->json($compagnie->vols); // Vérifiez que la relation 'vols' existe
+})->name('compagnies.vols');
 // Toutes les routes ci-dessous sont protégées par 'auth' et 'admin'
 Route::middleware(['auth', 'admin'])->group(function () {
     // Tableau de bord
