@@ -127,6 +127,33 @@ class ReservationController extends Controller
         return redirect()->route('reservations.index');
         
     }
+    public function storeHotel(Request $request)
+    {
+        $request->validate([
+            'hotel_id' => 'required|exists:hotels,id',
+            'date' => 'required',
+            'nombre_de_place' => 'required|integer|min:1',
+            'nom_personne' => 'required|string|max:255',
+            'prenom_personne' => 'required|string|max:255',
+            'telephone_personne' => 'required|string|max:15',
+            'numero_identite_personne' => 'required|string|max:20',
+        ]);
+    
+        Reservation::create([
+            'user_id' => Auth::id(),
+            'hotel_id' => $request->hotel_id,
+            'date' => $request->date,
+            'statut' => 'confirmée',
+            'nombre_de_place' => $request->nombre_de_place,
+            'nom_personne' => $request->nom_personne,
+            'prenom_personne' => $request->prenom_personne,
+            'telephone_personne' => $request->telephone_personne,
+            'numero_identite_personne' => $request->numero_identite_personne,
+        ]);
+    
+        return redirect()->route('reservations.index')->with('success', 'Réservation d\'hôtel créée avec succès.');
+    }
+    
     public function downloadPDF($id)
     {
         $reservation = Reservation::with('trajet.villeDepart', 'trajet.villeArrivee', 'trajet.compagnie', 'trajet.vol')->findOrFail($id);

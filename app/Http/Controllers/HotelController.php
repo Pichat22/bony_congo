@@ -33,6 +33,7 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+    
        $request->validate([
         'nom'=>'required',
         'adresse'=>'required',
