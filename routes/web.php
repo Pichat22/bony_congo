@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Ville;
+
 use App\Models\reservation;
 use App\Http\Controllers\{
     ProfileController,
@@ -42,12 +44,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/villes/{ville}/hotels', [HotelController::class, 'getHotels'])->name('hotels.get');
 
     // Recherche et gestion des réservations
     Route::post('reservations/search', [ReservationController::class, 'search'])->name('reservations.search');
     Route::resource('reservations', ReservationController::class);
     Route::get('/user_reservation', [ReservationController::class, 'ReservationByUser'])->name('reservations.user');
     Route::get('reservations/{id}/download', [ReservationController::class, 'downloadPDF'])->name('reservations.download');
+    Route::post('/reservations/hotel', [ReservationController::class, 'storeHotel'])->name('reservations.hotel.store');
 
     // Gestion des paiements
     Route::resource('paiements', PaiementController::class);

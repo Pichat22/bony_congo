@@ -33,6 +33,7 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+    
        $request->validate([
         'nom'=>'required',
         'adresse'=>'required',
@@ -43,7 +44,7 @@ class HotelController extends Controller
 
        ]);
        
-       Hotel::create($request->only(['nom', 'adresse', 'etoil', 'prix']));
+       Hotel::create($request->all());
 
        
        return redirect()->route('hotels.index')->with('success', 'hotel enregistré avec succès');

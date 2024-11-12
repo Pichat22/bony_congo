@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Rechercher un hôtel</h1>
+    <h1>Rechercher et réserver un hôtel</h1>
 
-    <form method="GET" action="{{ route('hotels.search') }}">
+    <form method="POST" action="{{ route('reservations.hotel.store') }}">
         @csrf
 
         <div class="row">
@@ -26,17 +26,56 @@
                     <label for="hotel_id">Hôtel</label>
                     <select name="hotel_id" id="hotel_id" class="form-control" required>
                         <option value="" disabled selected>Choisissez un hôtel</option>
-                        <!-- Les options seront chargées dynamiquement -->
                     </select>
                 </div>
             </div>
         </div>
 
-        <!-- Bouton de soumission -->
-        <button type="submit" class="btn btn-primary mt-3">Rechercher</button>
-    </form>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <!-- Date de réservation -->
+                <div class="form-group">
+                    <label for="date">Date de réservation</label>
+                    <input type="date" name="date" id="date" class="form-control" required>
+                </div>
+            </div>
 
-    <a href="{{ route('hotels.index') }}" class="btn btn-secondary mt-3">Retour à la liste des hôtels</a>
+            <div class="col-md-6">
+                <!-- Nombre de places -->
+                <div class="form-group">
+                    <label for="nombre_de_place">Nombre de places</label>
+                    <input type="number" name="nombre_de_place" id="nombre_de_place" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nom du client -->
+        <div class="form-group mt-3">
+            <label for="nom_personne">Nom du client</label>
+            <input type="text" name="nom_personne" id="nom_personne" class="form-control" required>
+        </div>
+
+        <!-- Prénom du client -->
+        <div class="form-group mt-3">
+            <label for="prenom_personne">Prénom du client</label>
+            <input type="text" name="prenom_personne" id="prenom_personne" class="form-control" required>
+        </div>
+
+        <!-- Téléphone -->
+        <div class="form-group mt-3">
+            <label for="telephone_personne">Téléphone</label>
+            <input type="text" name="telephone_personne" id="telephone_personne" class="form-control" required>
+        </div>
+
+        <!-- Numéro d'identité -->
+        <div class="form-group mt-3">
+            <label for="numero_identite_personne">Numéro d'identité</label>
+            <input type="text" name="numero_identite_personne" id="numero_identite_personne" class="form-control" required>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+    </form>
 
     <script>
         document.getElementById('ville_id').addEventListener('change', function() {
@@ -47,17 +86,12 @@
             hotelSelect.disabled = true;
 
             fetch(`/villes/${villeId}/hotels`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erreur lors de la récupération des hôtels.');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
                     if (data.length === 0) {
                         let option = document.createElement('option');
                         option.value = '';
-                        option.textContent = 'Aucun hôtel disponible pour cette ville';
+                        option.textContent = 'Aucun hôtel disponible';
                         hotelSelect.appendChild(option);
                     } else {
                         data.forEach(hotel => {
@@ -69,14 +103,7 @@
                     }
                     hotelSelect.disabled = false;
                 })
-                .catch(error => {
-                    console.error(error);
-                    let option = document.createElement('option');
-                    option.value = '';
-                    option.textContent = 'Erreur lors du chargement des hôtels';
-                    hotelSelect.appendChild(option);
-                    hotelSelect.disabled = false;
-                });
+                .catch(error => console.error('Erreur:', error));
         });
     </script>
 @endsection
