@@ -76,6 +76,7 @@ class CompagnieController extends Controller
      */
     public function destroy(compagnie $compagnie)
     {
-        //
+        $compagnie->delete(); 
+        return redirect()->route('compagnies.index');
     }
 }

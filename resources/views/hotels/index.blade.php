@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="card">
+    <div class="card-header">
+        <h1>Liste des Hotels</h1>
+    </div>
+    <div class="card-body">
 <a href="{{route('hotels.create')}}" class="btn btn-warning">Ajout</a>
 
     @if(session()->has('message'))
@@ -29,7 +34,7 @@
                     <td>{{ $hotel->adresse }}</td>
                     <td>{{ $hotel->etoil }}</td>
                     <td>{{ $hotel->prix }}</td>
-                    <td>{{ $hotel->ville }}</td>
+                    <td>{{ $hotel->ville->nom }}</td>
 
                     <td>
         <a href="{{route('hotels.show',$hotel->id)}}" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -55,4 +60,6 @@
   
   </tbody>
 </table>
+</div>
+</div>
 @endsection

@@ -10,4 +10,9 @@ class Ville extends Model
     use HasFactory;
     protected $fillable = ['nom', 'pays', 'latitude', 'longitude', 'population'];
 
+    public function hotel()
+    {
+        return $this->hasMany(Hotel::class);
+    }
+
 }

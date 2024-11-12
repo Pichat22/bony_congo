@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<a href="{{route('compagnies.create')}}" class="btn btn-warning">Ajout</a>
+<div class="card">
+<div class="card-header">
+<h1>Liste des Vols</h1>
+</div>
+  <div class="card-body">
+<a href="{{route('vols.create')}}" class="btn btn-warning">Ajout</a>
 @if(session()->has('message'))
 <div class="alert alert-success">
   {{session()->get('message')}}
@@ -56,4 +61,6 @@
    
   </tbody>
 </table>
+</div>
+</div>
 @endsection

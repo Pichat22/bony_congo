@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('adresse');
             $table->integer('etoil');
             $table->decimal('prix',8,2);
-            $table->unsignedBigInteger('ville_id')->nullable(); 
+            $table->unsignedBigInteger('ville_id'); 
  
 
             $table->timestamps();
