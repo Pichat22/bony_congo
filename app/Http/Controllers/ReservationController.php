@@ -107,7 +107,10 @@ class ReservationController extends Controller
      */
     public function edit(reservation $reservation)
     {
-        //
+        // $reservation = Reservation::with(['user', 'vol.compagnie'])->findOrFail($reservation);
+        $villes = Ville::all();
+        $trajets = Trajet::all();
+              return view('reservations.edit',compact('reservation', 'villes', 'trajets'));
     }
 
     /**
@@ -115,7 +118,17 @@ class ReservationController extends Controller
      */
     public function update(Request $request, reservation $reservation)
     {
-        //
+        $request->validate([
+            'date' => 'required|date',
+            'ville_depart_id' => 'required|exists:villes,id',
+            'ville_arrivee_id' => 'required|exists:villes,id|different:ville_depart_id',
+
+           ]);
+           
+           $reservation->update($request->all());
+    
+           
+           return redirect()->route('reservations.index')->with('success', 'reservation modifié avec succès');
     }
 
     /**

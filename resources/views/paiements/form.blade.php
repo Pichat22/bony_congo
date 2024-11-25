@@ -30,7 +30,7 @@
             <label for="moyen_paiement" class="form-label">Moyen de Paiement</label>
             <input type="text" name="moyen" class="form-control" id="moyen">
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter le Paiement</button>
+        <button type="submit" class="btn btn-warning">Ajouter le Paiement</button>
     </form>
 </div>
 @endsection

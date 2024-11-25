@@ -28,7 +28,7 @@
                         <td>{{ $trajet->vol->placesDisponibles() }}</td>
                         <td>{{ $trajet->date_depart }}</td>
                         <td>
-                            <form method="POST" action="{{ route('reservations.store') }}">
+                            <form method="POST" action="{{ route('reservations.update') }}">
                                 @csrf
                                 <input type="hidden" name="trajet_id" value="{{ $trajet->id }}">
                                 
@@ -41,7 +41,7 @@
                                 </select>
                                 
                                 <!-- Nombre de places -->
-                                <input type="number" name="nombre_de_place" id="nombre_de_place_{{ $trajet->id }}" min="1" class="form-control mb-2" placeholder="Nombre de places" required>
+                                <input type="number" value="{{$reservation->nombre_de_place}}" name="nombre_de_place" id="nombre_de_place_{{ $trajet->id }}" min="1" class="form-control mb-2" placeholder="Nombre de places" required>
                                 
                                 <div id="passenger-info-container-{{ $trajet->id }}"></div> <!-- Conteneur pour les informations des passagers -->
                                 

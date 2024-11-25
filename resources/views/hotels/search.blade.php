@@ -74,7 +74,7 @@
         </div>
 
         <!-- Bouton de soumission -->
-        <button type="submit" class="btn btn-primary mt-3">Réserver</button>
+        <button type="submit" class="btn btn-warning mt-3">Réserver</button>
     </form>
 
     <script>

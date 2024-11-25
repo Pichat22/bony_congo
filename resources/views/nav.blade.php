@@ -15,15 +15,11 @@
         <li class="nav-item mr-3">
           <a class="nav-link active text-warning" href="{{route('compagnies.index')}}">Compagnie</a>
         </li>
-        <li class="nav-item dropdown mr-3">
-          <a class="nav-link active text-warning " href="{{route('reservations.index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Reservation
-          </a>
+        <li class="nav-item mr-3">
+          <a class="nav-link active text-warning" href="{{route('reservations.index')}}">Reservation</a>
         </li>
-        <li class="nav-item dropdown mr-3">
-          <a class="nav-link active text-warning " href="{{route('hotels.index')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Hotel
-          </a>
+        <li class="nav-item mr-3">
+          <a class="nav-link active text-warning" href="{{route('hotels.index')}}">Hotel</a>
         </li>
         <li class="nav-item mr-3">
           <a class="nav-link active text-warning " aria-disabled="true">Contactez-nous</a>

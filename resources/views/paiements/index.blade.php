@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1>Liste des paiements</h1>
+<div class="card mt-3 hadow-lg p-3 mb-5 rounded" style="margin-left:-8%;">
+<div class="card-header bg-warning">
+    <h1 class="text-center text-white">Liste des paiements</h1>
+    </div>
+    <div class="card-body">
     <table class="table">
         <thead>
             <tr>
@@ -22,5 +26,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
+    </div>
 </div>
 @endsection

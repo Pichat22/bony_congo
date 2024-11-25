@@ -17,7 +17,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/tableudebord', [DashboardController::class, 'index'])->name('tableudebord');
 
     // Gestion des compagnies
-    Route::resource('compagnies', CompagnieController::class);
+    // Route::resource('compagnies', CompagnieController::class);
 
     // Gestion des vols
     Route::resource('vols', VolController::class);

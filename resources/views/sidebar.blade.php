@@ -13,7 +13,7 @@
         <li class="nav-item mb-2">
             <a href="{{ route('trajets.index') }}" class="nav-link text-white d-flex align-items-center">
                 <i class="bi bi-house me-2"></i>
-                <span>Accueil</span>
+                <span>Trajet</span>
             </a>
         </li>
         <li class="nav-item mb-2">

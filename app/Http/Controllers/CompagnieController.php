@@ -60,7 +60,9 @@ class CompagnieController extends Controller
      */
     public function edit(compagnie $compagnie)
     {
-        //
+        
+        return view('compagnies.edit',compact('compagnie'));
+        
     }
 
     /**

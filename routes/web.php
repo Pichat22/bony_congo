@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     ProfileController,
     ReservationController,
     PaiementController,
-    HotelController
+    HotelController,
+    CompagnieController
 
 };
 
@@ -47,17 +48,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/villes/{ville}/hotels', [HotelController::class, 'getHotels'])->name('hotels.get');
 
     // Recherche et gestion des réservations
-    Route::post('reservations/search', [ReservationController::class, 'search'])->name('reservations.search');
     Route::resource('reservations', ReservationController::class);
+    Route::post('reservations/search', [ReservationController::class, 'search'])->name('reservations.search');
+    
     Route::get('/user_reservation', [ReservationController::class, 'ReservationByUser'])->name('reservations.user');
     Route::get('reservations/{id}/download', [ReservationController::class, 'downloadPDF'])->name('reservations.download');
     Route::post('/reservations/hotel', [ReservationController::class, 'storeHotel'])->name('reservations.hotel.store');
+    // Route::post('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
+
 
     // Gestion des paiements
     Route::resource('paiements', PaiementController::class);
     Route::get('/hotels/search', [HotelController::class, 'searchForm'])->name('hotels.search');
     // Gestion des hotels
     Route::resource('hotels', HotelController::class);
+    Route::resource('compagnies', CompagnieController::class);
+
 });
 
 require __DIR__ . '/auth.php';

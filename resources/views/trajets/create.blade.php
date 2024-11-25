@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Créer un nouveau trajet</h1>
+<div class="card mt-3 hadow-lg p-3 mb-5 rounded" style="margin-left:-8%;">
+    <div class="card-header bg-warning">
+    <h1 class="text-center text-white">Créer un nouveau trajet</h1>
+    </div>
+    <div class="card-body">
 
     <form method="POST" action="{{ route('trajets.store') }}">
         @csrf
@@ -68,10 +72,12 @@
         </div>
 
         <!-- Bouton de soumission -->
-        <button type="submit" class="btn btn-primary mt-3">Créer le trajet</button>
+        <button type="submit" class="btn btn-warning mt-3">Créer le trajet</button>
     </form>
 
     <a href="{{ route('trajets.index') }}" class="btn btn-secondary mt-3">Retour à la liste des trajets</a>
+    </div>
+    </div>
 
     <script>
         document.getElementById('compagnie_id').addEventListener('change', function() {

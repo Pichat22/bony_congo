@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Rechercher un trajet</h1>
-
+<div class="card mt-3 hadow-lg p-3 mb-5 rounded" style="margin-left:-8%;">
+    <div class="card-header bg-warning">
+    <h1 text-center text-white>Rechercher un trajet</h1>
+    </div>
+    <div class="card-body">
     <form method="POST" action="{{ route('reservations.search') }}">
         @csrf
 
@@ -34,6 +37,8 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Rechercher</button>
+        <button type="submit" class="btn btn-warning mt-3">Reserver</button>
     </form>
+    </div>
+    </div>
 @endsection

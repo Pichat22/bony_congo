@@ -69,7 +69,9 @@ class HotelController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        //
+        $villes = Ville::all(); // Pour permettre la sélection des villes de départ et d'arrivée
+
+        return view('hotels.edit',compact('hotel', 'villes'));
     }
 
     /**
@@ -77,7 +79,23 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        
+        $request->validate([
+            'nom'=>'required',
+            'adresse'=>'required',
+            'etoil'=>'required',
+            'prix'=>'required',
+            'ville_id' => 'required|exists:villes,id',
+    
+            
+    
+    
+           ]);
+           
+           $hotel->update($request->all());
+    
+           
+           return redirect()->route('hotels.index')->with('success', 'hotel modifié avec succès');
+    
     }
 
     /**

@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
-    <div class="col-4">
-      
+<div class="card mt-3 hadow-lg p-3 mb-5 rounded">
+  <div class="card-header bg-warning">
+    <h3 class="text-center text-white">Ajouter un vol</h3>
+  </div>
+      <div class="card-body">
       @if($errors->any())
       <div class="alert alert-danger">
       <ul>
@@ -42,9 +44,11 @@
   </div>
   <button type="submit" class="btn btn-warning">Ajouter</button>
 </form>
+</div>
+    
     </div>
     <div class="col-8">
         <img src="{{asset('image/vol.png')}}"  alt="" srcset="">
     </div>
-</div>
+
 @endsection

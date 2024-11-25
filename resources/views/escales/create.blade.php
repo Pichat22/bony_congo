@@ -20,7 +20,7 @@
             <input type="number" name="ordre" id="ordre" class="form-control" placeholder="Ordre de l'escale">
         </div> -->
 
-        <button type="submit" class="btn btn-primary mt-3">Ajouter l'escale</button>
+        <button type="submit" class="btn btn-warning mt-3">Ajouter l'escale</button>
     </form>
 
     <a href="{{ route('trajets.show', $trajet->id) }}" class="btn btn-secondary mt-3">Retour au trajet</a>

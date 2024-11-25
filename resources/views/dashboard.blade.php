@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('reservations.create') }}" class="btn btn-success">Ajouter réservation</a>
+    <a href="{{ route('reservations.create') }}" class="btn btn-warning">Ajouter une réservation</a>
 
     @if(session()->has('message'))
         <div class="alert alert-success">
