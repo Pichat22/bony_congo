@@ -1,3 +1,14 @@
+<style>
+  .navbar .nav-link{
+    font-size:1.2rem;
+    padding:0.4rem;
+    font-weight: bold;
+  }
+  .navbar .text-white {
+  font-size: 1rem;
+  font-weight: 500;
+}
+</style>
 <nav class="navbar navbar-expand-lg bg-black opacity-75">
   <div class="container-fluid">
     <img src="{{asset('image/logo-removebg-preview.png')}}" width="90" alt="" srcset="">
@@ -7,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item mr-3">
-          <a class="nav-link active text-warning" aria-current="page" href="#">Accueil</a>
+          <a class="nav-link active text-warning" aria-current="page" href="{{ route('tableudebord') }}">Accueil</a>
         </li>
         <li class="nav-item mr-3">
           <a class="nav-link active text-warning" href="{{route('vols.index')}}">Vol</a>
@@ -22,7 +33,7 @@
           <a class="nav-link active text-warning" href="{{route('hotels.index')}}">Hotel</a>
         </li>
         <li class="nav-item mr-3">
-          <a class="nav-link active text-warning " aria-disabled="true">Contactez-nous</a>
+          <a class="nav-link active text-warning " href="/contact" aria-disabled="true">Contactez-nous</a>
         </li>
       </ul>
 

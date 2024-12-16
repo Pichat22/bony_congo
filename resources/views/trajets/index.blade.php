@@ -9,9 +9,9 @@
         <p>Aucun trajet trouvé.</p>
     @else
         
-     <div class="card">
-     <div class="card-header">
-          <h2>Liste des trajets</h2>
+     <div class="card mt-3 hadow-lg p-3 mb-5 rounded" style="margin-left:-8%;">
+     <div class="card-header bg-warning">
+          <h2 class="text-center text-white">Liste des trajets</h2>
      </div>
      <div class="card-body">
      <table class="table">
@@ -33,7 +33,7 @@
                  <td>{{ $trajet->duree ?? 'N/A' }}</td>
                  <td class="d-flex">
                      <!-- Bouton Détails -->
-     <a href="{{ route('trajets.show', $trajet->id) }}" class="btn btn-info m-1">
+     <a href="{{ route('trajets.show', $trajet->id) }}" class="btn btn-success m-1">
      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>

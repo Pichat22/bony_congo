@@ -1,21 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="card">
-    <div class="card-header">
-        detail N:{{$hotel->id}}
-    </div>
-    <div class="card-body">
-        <p>nom:{{$hotel->nom}}</p>
-        <p>adresse:{{$hotel->adresse}}</p>
-        <p>nom:{{$hotel->etoil}}</p>
-        <p>nom:{{$hotel->prix}}</p>
-        
-
-        
-
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h3>Détail Hôtel N° {{$hotel->id}}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Nom :</strong> {{$hotel->nom}}</p>
+            <p><strong>Adresse :</strong> {{$hotel->adresse}}</p>
+            <p><strong>Étoiles :</strong> {{$hotel->etoil}}</p>
+            <p><strong>Prix :</strong> {{$hotel->prix}}</p>
+        </div>
     </div>
 </div>
-<p>
-
-</p>
 @endsection

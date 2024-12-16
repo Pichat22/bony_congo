@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Ville;
+use Illuminate\Http\Request;
 
 use App\Models\reservation;
 use App\Http\Controllers\{
@@ -9,7 +10,8 @@ use App\Http\Controllers\{
     ReservationController,
     PaiementController,
     HotelController,
-    CompagnieController
+    CompagnieController,
+    ContactController
 
 };
 
@@ -24,6 +26,11 @@ use App\Http\Controllers\{
 
 Route::get('/', function () {
     return redirect()->route('login');
+});
+Route::get('/profil', function (Request $request) {
+    return view('profile.edit', [
+        'user' => $request->user(),
+    ]);
 });
 // Route vers le tableau de bord (accessible après authentification et vérification email)
 Route::get('/dashboard', function () {
@@ -42,7 +49,7 @@ Route::get('compagnies/{compagnie}/vols', function (App\Models\Compagnie $compag
 Route::middleware('auth')->group(function () {
 
     // Gestion du profil utilisateur
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profiles', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/villes/{ville}/hotels', [HotelController::class, 'getHotels'])->name('hotels.get');
@@ -63,6 +70,38 @@ Route::middleware('auth')->group(function () {
     // Gestion des hotels
     Route::resource('hotels', HotelController::class);
     Route::resource('compagnies', CompagnieController::class);
+
+    // Gestion des contacts
+
+    // Route pour afficher le formulaire de contact
+    Route::get('/contact', function () {
+        return view('contacts.form'); // Charge la vue du formulaire.
+    });
+    
+
+// Route pour rediriger vers le formulaire de contact
+Route::post('/contact', function () {
+    // Traitement des données du formulaire
+    return back()->with('success', 'Votre message a bien été envoyé!');
+});
+
+ // Gestion des utilisateurs
+
+    // Route pour afficher le formulaire de l'utiisateur
+    Route::get('/user', function () {
+        return view('users.form'); // Charge la vue du formulaire.
+    });
+    
+
+// Route pour rediriger vers le formulaire de l'utilisateur
+Route::post('/user', function () {
+    // Traitement des données du formulaire
+    return back()->with('success', 'Création avec success');
+});
+
+
+
+    // Route::resource('contacts', ContactController::class);
 
 });
 

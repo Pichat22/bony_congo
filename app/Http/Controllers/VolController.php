@@ -73,9 +73,13 @@ class VolController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(vol $vol)
+    public function edit($id)
     {
-        //
+        $vol=Vol::findOrFail($id);
+        $compagnies=Compagnie::all();
+
+        return view('vols.edit',compact('vol', 'compagnies'));
+
     }
 
     /**
@@ -83,7 +87,28 @@ class VolController extends Controller
      */
     public function update(Request $request, vol $vol)
     {
-        //
+        $request->validate([
+            'nombre_de_place'=>'required',
+            'matricule'=>'required',
+            'marque'=>'required',
+            'date_de_creation'=>'required',
+            'compagnie_id'=>'required'
+
+
+        ],[
+           'nombre_de_place.required'=>'Le nombre de place est obligatoire',
+            'matricule.required'=>'Le matricule est obligatoire',
+            'marque.required'=>'La marque est obligatoire',
+            'date_de_creation.required'=>'La date de creation est obligatoire',
+            'compagnie_id.required'=>'La compagnie est obligatoire' 
+        ]);
+        $vol->nombre_de_place=$request->nombre_de_place;
+        $vol->matricule=$request->matricule;
+        $vol->marque=$request->marque;
+        $vol->date_de_creation=$request->date_de_creation;
+        $vol->compagnie_id=$request->compagnie_id;
+        $vol->save();
+        return redirect()->route('vols.index')->with('message','vol ajoute avec succes');
     }
 
     /**

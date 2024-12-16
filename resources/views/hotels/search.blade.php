@@ -22,7 +22,7 @@
 
             <div class="col-md-6">
                 <!-- Hôtel -->
-                <div class="form-group mt-3">
+                <div class="form-group">
                     <label for="hotel_id">Hôtel</label>
                     <select name="hotel_id" id="hotel_id" class="form-control" required>
                         <option value="" disabled selected>Choisissez un hôtel</option>

@@ -58,9 +58,9 @@ class CompagnieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(compagnie $compagnie)
+    public function edit($id)
     {
-        
+        $compagnie = Compagnie::findOrFail($id);
         return view('compagnies.edit',compact('compagnie'));
         
     }
@@ -68,9 +68,19 @@ class CompagnieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, compagnie $compagnie)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom_compagnie'=>'required',
+        ],[
+           'nom_compagnie.required'=>'Le nom compagnie est obligatoire', 
+        ]);
+        $compagnie = Compagnie::findOrFail($id);
+
+        $compagnie->nom_compagnie=$request->nom_compagnie;
+        $compagnie->save();
+        return redirect()->route('compagnies.index')->with('message',' compagnie modifier avec succes');
+        
     }
 
     /**
